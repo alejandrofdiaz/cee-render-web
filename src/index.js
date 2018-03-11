@@ -1,6 +1,8 @@
 import './normalize.css';
 import './style.css';
+import './alert.css';
 import axios from 'axios';
+import Alert, { CLASS_DANGER, CLASS_INFO, CLASS_WARNING } from './alert';
 
 const POST_URL = POST;
 const INPUT_ID = 'file_input';
@@ -85,6 +87,8 @@ function removeFiles(input, input_text, descriptionElement) {
 }
 
 function init() {
+  const alert = new Alert();
+
   const input = document.getElementById(INPUT_ID);
   const submit = document.getElementById(SUBMIT_ID);
   const file_name_input = document.getElementById(FILE_NAME_INPUT_ID);
@@ -113,17 +117,16 @@ function init() {
         removeFiles(input, file_name_input, file_name);
         disableElement(submit);
       })
+      .catch(err => {
+        alert.dispatch('Se ha producido un error', CLASS_DANGER);
+      })
       .then(() => {
         notLoading();
-      })
-      .catch(err => {
-        console.log(err);
       });
   });
 
   const addActiveClassFileDropArea = () => file_drop_area.classList.add(ACTIVE_CLASS);
-  const removeActiveClassFileDropArea = () =>
-    file_drop_area.classList.remove(ACTIVE_CLASS);
+  const removeActiveClassFileDropArea = () => file_drop_area.classList.remove(ACTIVE_CLASS);
   const isLoading = () => form_container.classList.add(LOADING_CLASS);
   const notLoading = () => form_container.classList.remove(LOADING_CLASS);
 
