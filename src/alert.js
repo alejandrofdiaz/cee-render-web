@@ -9,7 +9,6 @@ const DEFAULT_MSG = 'Ha habido un error';
 
 class Alert {
   constructor(ID = ALERT_ID) {
-    console.log(ID);
     this._el = document.getElementById(ID);
     this._close = document.getElementById(ALERT_CLOSE_ID);
     this._text = document.getElementById(ALERT_TEXT_ID);
