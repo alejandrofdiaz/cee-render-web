@@ -38,12 +38,8 @@ function handleFileChange({ files, num_reg }) {
   const file = files[0];
   return new Promise((resolve, reject) => {
     uploadDocumentRequest({ file, name: num_reg })
-      .then(() => {
-        resolve();
-      })
-      .catch(() => {
-        reject();
-      });
+      .then(resolve, reject)
+      .catch(reject);
   });
 }
 
@@ -112,11 +108,17 @@ function init() {
 
   submit.addEventListener('click', () => {
     isLoading();
+    alert.dissmiss();
     handleFileChange({ files: _files, num_reg: file_name_input.value })
-      .then(() => {
-        removeFiles(input, file_name_input, file_name);
-        disableElement(submit);
-      })
+      .then(
+        () => {
+          removeFiles(input, file_name_input, file_name);
+          disableElement(submit);
+        },
+        () => {
+          alert.dispatch('Se ha producido un error', CLASS_DANGER);
+        }
+      )
       .catch(err => {
         alert.dispatch('Se ha producido un error', CLASS_DANGER);
       })
