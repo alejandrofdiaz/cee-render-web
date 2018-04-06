@@ -42,18 +42,21 @@
   border-color: #f5c6cb;
 }
 
-.alert__close{
+.alert__close {
   color: inherit;
-  background-color:inherit;
+  background-color: inherit;
   display: block;
   width: auto;
   padding: 5px 10px;
   margin-left: auto;
   margin-right: auto;
-  position: relative; 
+  position: relative;
+  background-color: #ffff;
+  border-radius: 2px;
+  color: #000000;
 }
 
-.alert__text{
+.alert__text {
   color: inherit;
 }
 
