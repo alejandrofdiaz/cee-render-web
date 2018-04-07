@@ -35,7 +35,8 @@ const commonConfig = {
       }
     ]),
     new webpack.DefinePlugin({
-      POST: JSON.stringify('http://localhost:3000')
+      POST: JSON.stringify('/'),
+      NODE_ENV: JSON.stringify('development')
     })
   ]
 };

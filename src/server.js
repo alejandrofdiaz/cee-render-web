@@ -5,16 +5,23 @@ const formidable = require('formidable');
 const ceeRender = require('cee-render');
 const server = express();
 const cors = require('cors');
+const compression = require('compression');
+const helmet = require('helmet');
 
 const rootPath = __dirname;
-const binPath = path.resolve(process.cwd(), 'bin');
+const binRelPath = process.env.TEMP_PATH || 'tmp';
+
+const binPath = path.resolve(process.cwd(), binRelPath);
+
+if (!!process.env.NODE_ENV && process.env.NODE_ENV === 'production') {
+  console.log('production!!');
+  server.use(compression());
+  server.use(helmet());
+}
 
 createFolders(binPath);
-
 server.use(cors());
-
 server.use('/', express.static(__dirname + '/public'));
-
 server.post('', (req, res, err) => {
   const form = new formidable.IncomingForm();
 
@@ -28,11 +35,13 @@ server.post('', (req, res, err) => {
           res.download(path, `${file.name}.pdf`);
         },
         err => {
+          console.log(err);
           res.status(500);
           res.json();
         }
       );
     } catch (err) {
+      console.log(err);
       res.status(500);
       res.json();
     }
@@ -40,6 +49,7 @@ server.post('', (req, res, err) => {
 });
 
 server.listen(3000, () => {
+  console.log('Saving files in ' + binPath);
   console.log('yaaay');
 });
 
@@ -50,12 +60,15 @@ function createFolders(...paths) {
       _currentPath = path.resolve(process.cwd(), currentPath);
     }
     if (fs.existsSync(_currentPath)) {
+      console.log(_currentPath + ' exists');
       return true;
     } else {
       try {
         fs.mkdirSync(_currentPath);
+        console.log('now' + s_currentPath + ' exists');
         return true;
       } catch (err) {
+        console.log('Something went wrong :/');
         return false;
       }
     }

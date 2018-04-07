@@ -3,10 +3,14 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "8.9.1"
+  },
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.prod.js --mode development --open",
-    "build": "rimraf ./dist && rimraf ./bin && &webpack --mode development",
-    "build:prod":
+    "start": "node dist/server.js NODE_ENV=production",
+    "start:dev": "webpack-dev-server --config webpack.config.prod.js --mode development --open",
+    "build:dev": "rimraf ./dist && rimraf ./bin && &webpack --mode development",
+    "build":
       "rimraf ./dist && rimraf ./bin && webpack --config webpack.config.prod.js --mode production"
   },
   "author": "",
@@ -30,8 +34,16 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cee-render": "0.0.3",
+    "compression": "^1.7.2",
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "formidable": "^1.2.1"
+    "formidable": "^1.2.1",
+    "helmet": "^3.12.0"
+  },
+  "now": {
+    "env": {
+      "NODE_ENV": "production",
+      "TEMP_PATH": "../../../tmp"
+    }
   }
 }

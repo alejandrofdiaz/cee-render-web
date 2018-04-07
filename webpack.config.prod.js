@@ -6,7 +6,8 @@ module.exports = wpMerge(baseConfig, {
   devtool: 'none',
   plugins: [
     new webpack.DefinePlugin({
-      POST: JSON.stringify('/')
+      POST: JSON.stringify('/'),
+      NODE_ENV: JSON.stringify('production')
     })
   ]
 });
