@@ -63,7 +63,9 @@ typings/
 
 # Distribution
 dist/
-
+bin/
+*.pdf
+*.xml
 
 
 # End of https://www.gitignore.io/api/node

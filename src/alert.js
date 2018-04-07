@@ -30,7 +30,7 @@ class Alert {
   }
 
   setClass(className = CLASS_INFO) {
-    this._el.className = ['alert',className].join(' ');
+    this._el.className = ['alert', className].join(' ');
   }
 
   dispatch(msg, className) {

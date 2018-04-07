@@ -3,9 +3,10 @@ const wpMerge = require('webpack-merge');
 const baseConfig = require('./webpack.config');
 
 module.exports = wpMerge(baseConfig, {
+  devtool: 'none',
   plugins: [
     new webpack.DefinePlugin({
-      POST: JSON.stringify('http://localhost:3000')
+      POST: JSON.stringify('/')
     })
   ]
 });
