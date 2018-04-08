@@ -1,11 +1,10 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 
 const commonConfig = {
   output: {
-    path: path.resolve(process.cwd(), 'dist/public')
+    path: path.resolve(process.cwd(), 'dist')
   },
   module: {
     rules: [
@@ -28,12 +27,6 @@ const commonConfig = {
       hash: true,
       cache: true
     }),
-    new CopyWebpackPlugin([
-      {
-        from: './src/server.js',
-        to: '..'
-      }
-    ]),
     new webpack.DefinePlugin({
       POST: JSON.stringify('/'),
       NODE_ENV: JSON.stringify('development')
