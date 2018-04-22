@@ -2,9 +2,9 @@ import './normalize.css';
 import './style.css';
 import './alert.css';
 import axios from 'axios';
-import Alert, { CLASS_DANGER, CLASS_INFO, CLASS_WARNING } from './alert';
+import Alert, { CLASS_DANGER } from './alert';
 
-const POST_URL = POST;
+const POST_URL = POST || 'https://localhost:3000/';
 const INPUT_ID = 'file_input';
 const SUBMIT_ID = 'file_submit';
 const FILE_NAME_INPUT_ID = 'file_name';
@@ -119,7 +119,7 @@ function init() {
           alert.dispatch('Se ha producido un error', CLASS_DANGER);
         }
       )
-      .catch(err => {
+      .catch(() => {
         alert.dispatch('Se ha producido un error', CLASS_DANGER);
       })
       .then(() => {

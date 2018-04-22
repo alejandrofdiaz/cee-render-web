@@ -19,17 +19,12 @@ const commonConfig = {
       }
     ]
   },
-  devtool: 'source-map',
   plugins: [
     new HTMLPlugin({
       template: './src/index.html',
       filename: './index.html',
       hash: true,
       cache: true
-    }),
-    new webpack.DefinePlugin({
-      POST: JSON.stringify('/'),
-      NODE_ENV: JSON.stringify('development')
     })
   ]
 };
