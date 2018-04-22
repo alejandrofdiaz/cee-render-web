@@ -1,5 +1,5 @@
 const HTMLPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 const commonConfig = {
@@ -25,7 +25,8 @@ const commonConfig = {
       filename: './index.html',
       hash: true,
       cache: true
-    })
+    }),
+    new CopyWebpackPlugin([{ from: 'assets/*.pdf', to: '', flatten: true }])
   ]
 };
 
