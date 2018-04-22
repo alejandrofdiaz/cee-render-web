@@ -6,7 +6,7 @@ module.exports = wpMerge(baseConfig, {
   devtool: 'source-map',
   plugins: [
     new webpack.DefinePlugin({
-      POST: JSON.stringify('https://localhost:3000/'),
+      POST: JSON.stringify('http://localhost:3000/'),
       NODE_ENV: JSON.stringify('development')
     })
   ]
