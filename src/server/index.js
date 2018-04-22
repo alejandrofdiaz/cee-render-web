@@ -19,7 +19,7 @@ try {
 
     form.parse(req, (err, fields = {}, { file }) => {
       let number = file.name;
-      if (!fields.name) number = fields.name;
+      if (!!fields.name) number = fields.name;
       try {
         ceeRender.getPDFFromXml(file.path, binPath, number).then(
           path => {
